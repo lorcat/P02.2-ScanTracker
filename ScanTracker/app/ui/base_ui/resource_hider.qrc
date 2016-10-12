@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/ic_remove_red_eye_black_36dp.png</file>
+    <file>images/ic_remove_red_eye_grey600_36dp.png</file>
+  </qresource>
+</RCC>

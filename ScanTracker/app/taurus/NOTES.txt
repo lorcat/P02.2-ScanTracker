@@ -1,0 +1,86 @@
+TaurusPlot
+        self._pointPicker = Qwt5.QwtPicker(self.canvas())
+        self._pointPicker.setSelectionFlags(Qwt5.QwtPicker.PointSelection )
+
+        self._pickedMarker = TaurusCurveMarker("Picked", labelOpacity=0.8)
+        self._pickedCurveName = ""
+        self.connect(self._pointPicker, Qt.SIGNAL('selected(QwtPolygon)'), self.pickDataPoint)
+
+        self._grid = Qwt5.QwtPlotGrid()
+
+    def __initActions(self):
+    sets different shortcuts for simple things
+
+ScanTrendSet
+def _createTrends(self, datadesc):
+    sets default view of the curve - for style correction
+
+MENU:
+def _canvasContextMenu(self):
+
+
+Work with scans widgets
+Collects events of scan data change
+        :param chindex: int() - index of the channel in internal storage
+        :param wdgt: TaurusTrend() - widget emitting the signal
+        :return:
+
+        Notes:
+        name = wdgt.getTrendSetNames()[0]
+        name == scan://p02/door/haspp02ch2.01
+
+        ---- TrendScan
+        ts = wdgt.getTrendSet(name)
+        ts == TrendSet() - >ScanTrendSet()
+
+        ---- get motor name - future reference with Sardana
+        title = ts._autoXDataKey
+        title == ceny_gp
+
+        ---- get curve name
+        curvname = ts.getCurveNames()[0]
+        Curve name: haspp02ch2:10000/expchan/vfcadc_eh2b/3
+
+        ---- curve title - Qwt object
+        curvtitle = str(curve.titleText())
+        curvtitle == eh2b_vfc04
+
+        ---- get curves
+        (channel, curve) = ts.getCurves().next()
+        (channel, curve) == (haspp02ch2:10000/expchan/vfcadc_eh2b/3 - <taurus.qt.qtgui.plot.taurusplot.TaurusCurve>)
+
+        ---- data itself - backing from Qwt plot
+        data = curve.data()
+        !!! List conversion is required
+        self.logger.info("Data x (%s)" % str(
+            list(data.xData()
+        )))
+        Data x ([0.0, 0.0050000000000000044, 0.010000000000000009])
+
+        self.logger.info("Data y (%s)" % str(
+            list(data.yData()
+        )))
+        Data y ([0.0, 0.0, 0.0])
+
+        self._logger.info(el.getData())
+        {'name': 'ceny_gp', 'parent': 'omsvme58_eh2b', 'instrument': None, 'interfaces': ['Object', 'PoolObject', 'Element', 'PoolElement', 'Moveable', 'Acquirable', 'Motor'], 'controller': 'haspp02ch2:10000/controller/hasymotorctrl/omsvme58_eh2b', 'source': 'haspp02ch2:10000/motor/omsvme58_eh2b/42/Position', 'pool': 'pool_haspp02ch2', 'full_name': 'haspp02ch2:10000/motor/omsvme58_eh2b/42', 'type': 'Motor', 'id': 447, 'unit': '0', 'axis': 42}
+        el = self.__door.macro_server.getElementInfo("ceny_gp")
+
+
+DynamicPlotManager==Door
+
+# motor existing or not
+    # existing motor
+el = self.__door.macro_server.getElementInfo("ceny_gp")
+self._logger.info(type(self.__door.macro_server.getElementInfo("ceny_gp")))
+self._logger.info(el.getName())
+self._logger.info(el.getData())
+
+MainThread     INFO     2015-02-26 15:34:16,035 MainWindow: <class 'sardana.taurus.core.tango.sardana.sardana.BaseSardanaElement'>
+MainThread     INFO     2015-02-26 15:34:16,035 MainWindow: ceny_gp
+MainThread     INFO     2015-02-26 15:34:16,035 MainWindow: {'name': 'ceny_gp', 'parent': 'omsvme58_eh2b', 'instrument': None, 'interfaces': ['Object', 'PoolObject', 'Element', 'PoolElement', 'Moveable', 'Acquirable', 'Motor'], 'controller': 'haspp02ch2:10000/controller/hasymotorctrl/omsvme58_eh2b', 'source': 'haspp02ch2:10000/motor/omsvme58_eh2b/42/Position', 'pool': 'pool_haspp02ch2', 'full_name': 'haspp02ch2:10000/motor/omsvme58_eh2b/42', 'type': 'Motor', 'id': 447, 'unit': '0', 'axis': 42}
+
+ # not existing
+el = self.__door.macro_server.getElementInfo("stupid")
+self.info("NonExisiting motor %s" % str(el))
+NonExisiting motor None

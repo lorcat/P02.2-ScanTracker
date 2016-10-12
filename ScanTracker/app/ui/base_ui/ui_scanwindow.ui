@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>scanWindow</class>
+ <widget class="QWidget" name="scanWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>777</width>
+    <height>719</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QSplitter" name="splitter">
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="lineWidth">
+      <number>3</number>
+     </property>
+     <property name="midLineWidth">
+      <number>10</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="handleWidth">
+      <number>10</number>
+     </property>
+     <property name="childrenCollapsible">
+      <bool>true</bool>
+     </property>
+     <widget class="QToolBox" name="tool_selector">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_scans">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>692</width>
+         <height>645</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Scans:</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QWidget" name="widget" native="true">
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="cb_latest">
+             <property name="toolTip">
+              <string>Always jump to the latest scan</string>
+             </property>
+             <property name="text">
+              <string>track latest</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QCheckBox" name="cb_derivative">
+             <property name="toolTip">
+              <string>Calculate Derivative</string>
+             </property>
+             <property name="text">
+              <string>d'</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="3">
+            <widget class="QCheckBox" name="cb_invert">
+             <property name="toolTip">
+              <string>Invert current data</string>
+             </property>
+             <property name="text">
+              <string>inv.</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_channels">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>692</width>
+         <height>645</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Channels:</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3" columnstretch="0"/>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_graph" native="true">
+      <layout class="QGridLayout" name="gridLayout_4"/>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cb_derivative</sender>
+   <signal>clicked()</signal>
+   <receiver>scanWindow</receiver>
+   <slot>actionApplyDerivative()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>163</x>
+     <y>367</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_invert</sender>
+   <signal>clicked()</signal>
+   <receiver>scanWindow</receiver>
+   <slot>actionApplyInversion()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>296</x>
+     <y>-7</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>actionScanSelection()</slot>
+  <slot>actionApplyDerivative()</slot>
+  <slot>actionApplyInversion()</slot>
+ </slots>
+</ui>
